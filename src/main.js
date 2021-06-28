@@ -17,3 +17,16 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(res => res.meta.requireAuth)) { // 验证是否需要登陆
+    if (sessionStorage.getItem('sid')) { // 查询本地存储信息是否已经登陆
+      next()
+    } else {
+      next({
+        path: '/' // 未登录则跳转至login页面
+      })
+    }
+  } else {
+    next()
+  }
+})

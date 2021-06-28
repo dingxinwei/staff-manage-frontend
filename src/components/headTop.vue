@@ -6,8 +6,24 @@
         item
       }}</el-breadcrumb-item>
     </el-breadcrumb>
+    <a href="#" style="color:black;font-size:15px" @click.prevent="logout">退出</a>
   </div>
 </template>
+<script>
+export default {
+  methods: {
+    logout () {
+      this.$router.push('/')
+      sessionStorage.removeItem('sid')
+      this.$message({
+        showClose: true,
+        message: '退出成功',
+        type: 'success'
+      })
+    }
+  }
+}
+</script>
 <style>
 .header_container {
   background-color: #eff2f7;

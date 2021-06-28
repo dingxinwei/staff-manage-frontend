@@ -1,17 +1,12 @@
 /* eslint-disable no-unused-vars */
 <template>
   <div id="app">
-    <manage></manage>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import manage from './components/manage'
 export default {
-  name: 'App',
-  components: {
-    manage
-  }
 }
 </script>
 
@@ -23,5 +18,6 @@ export default {
   text-align: center;
   margin-top: 0px;
   height: 100%;
+  width: 100%;
 }
 </style>
