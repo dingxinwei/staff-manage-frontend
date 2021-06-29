@@ -40,7 +40,7 @@ export default {
           { username: this.username, password: this.password },
           reponse => {
             if ('data' in reponse) {
-              if (reponse.data.code === 1) {
+              if (reponse.data.code === 200) {
                 this.$message({
                   showClose: true,
                   message: '恭喜你，登录成功',

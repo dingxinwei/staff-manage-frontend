@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {Message} from 'element-ui'
 let http = axios.create({
   baseURL: 'http://localhost:3000/',
   withCredentials: true,
@@ -15,7 +16,18 @@ let http = axios.create({
     return newData
   }]
 })
-
+http.interceptors.response.use(res => {
+  let code = res.data.code || 200
+  if (code === 403) {
+    Message({
+      message: '登录状态已过期，即将跳转到登录页面',
+      type: 'error'
+    })
+    window.location.pathname = '/'
+  } else {
+    return res
+  }
+})
 function apiAxios (method, url, params, response) {
   http({
     method: method,
@@ -31,7 +43,6 @@ function apiAxios (method, url, params, response) {
 
 export default {
   get: function (url, params = null, response) {
-    console.log(params)
     return apiAxios('GET', url, params, response)
   },
   post: function (url, params, response) {

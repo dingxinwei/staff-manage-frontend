@@ -15,10 +15,20 @@ export default {
     logout () {
       this.$router.push('/')
       sessionStorage.removeItem('sid')
-      this.$message({
-        showClose: true,
-        message: '退出成功',
-        type: 'success'
+      this.$api.post('user/logout', null, reponse => {
+        if (reponse.data.code === 200) {
+          this.$message({
+            showClose: true,
+            message: '退出成功',
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            showClose: true,
+            message: '退出失败',
+            type: 'error'
+          })
+        }
       })
     }
   }
