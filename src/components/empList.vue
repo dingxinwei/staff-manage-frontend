@@ -147,7 +147,7 @@ export default {
     },
     handleDelete (index, row) {
       this.$api.delete(`emp/${row.empnum}`, null, response => {
-        if (response.data.code === 1) {
+        if (response.data.code === 200) {
           this.$message({
             showClose: true,
             message: '删除成功',
@@ -187,7 +187,7 @@ export default {
           did: this.selectTable.did
         },
         (response) => {
-          if (response.data.code === 1) {
+          if (response.data.code === 200) {
             this.dialogVisible = false
             this.$message({
               showClose: true,

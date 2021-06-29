@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 <template>
   <div id="app">
     <router-view></router-view>
@@ -16,8 +15,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  margin-top: 0px;
   height: 100%;
   width: 100%;
+}
+body {
+  margin: 0;
 }
 </style>

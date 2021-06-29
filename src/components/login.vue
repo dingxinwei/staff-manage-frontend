@@ -1,27 +1,27 @@
 <template>
   <div class="login_page">
-    <section class="content">
-      <div class="title">
-        <p>员工考勤管理系统</p>
-      </div>
+    <div class="box">
       <el-form>
-        <el-form-item>
+        <el-form-item  class="item">
+          <h1>员工考勤管理系统</h1>
+        </el-form-item>
+        <el-form-item class="item">
           <el-input v-model="username" placeholder="用户名"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="item">
           <el-input
             type="password"
             v-model="password"
             placeholder="密码"
           ></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="item">
           <el-button type="primary" style="width: 100%" @click="login"
             >登录</el-button
           >
         </el-form-item>
       </el-form>
-    </section>
+    </div>
   </div>
 </template>
 <script>
@@ -74,26 +74,23 @@ export default {
 </script>
 <style scoped>
 .login_page {
-  width: 100%;
-  height: 100%;
+  height: 625px;
+  background-image: url('../assets/login-background.jpg');
+  background-size: cover;
 }
-.content {
-  width: 400px;
+.item{
+  width: 300px;
+}
+.box{
+  width: 300px;
   height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   margin: auto;
-  margin-top: 100px;
+
 }
-html,
-body {
-  width: 100%;
-  height: 100%;
-  margin-top: 0px;
-  margin-left: 0px;
-}
-p {
-  font-size: 30px;
-}
-.title {
-  margin-bottom: 50px;
-}
+
 </style>

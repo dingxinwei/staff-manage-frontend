@@ -82,7 +82,7 @@ export default {
             did: this.value
           },
           (response) => {
-            if (response.data.code === 1) {
+            if (response.data.code === 200) {
               this.$message({
                 showClose: true,
                 message: '添加成功',
