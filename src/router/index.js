@@ -12,7 +12,6 @@ export default new Router({
     {
       path: '/manage',
       component: () => import('@/components/manage'),
-      redirect: '/home',
       meta: {
         requireAuth: true // 配置此条，进入页面前判断是否需要登陆
       },

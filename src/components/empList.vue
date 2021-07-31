@@ -83,6 +83,7 @@
 <script>
 import headTop from '@/components/headTop'
 import exportExcel from '@/components/exportExcel'
+import Sortable from 'sortablejs'
 export default {
   data () {
     return {
@@ -122,11 +123,18 @@ export default {
       this.deleteEmp = response.data.data
     })
   },
+  mounted () {
+    this.rowDrop()
+  },
   methods: {
     handleCurrentChange (val) {
       this.currentPage = val
       this.offset = (val - 1) * this.limit
       this.getEmpList()
+    },
+    rowDrop () {
+      const tbody = document.querySelector('.el-table__body-wrapper tbody')
+      Sortable.create(tbody)
     },
     getEmpList () {
       this.$api.get('emp', null, response => {

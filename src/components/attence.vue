@@ -34,6 +34,7 @@
 <script>
 import headTop from '@/components/headTop'
 import exportExcel from '@/components/exportExcel'
+import Sortable from 'sortablejs'
 export default {
   data () {
     return {
@@ -75,11 +76,18 @@ export default {
       this.allEmp = response.data.data
     })
   },
+  mounted () {
+    this.rowDrop()
+  },
   methods: {
     handleCurrentChange (val) {
       this.currentPage = val
       this.offset = (val - 1) * this.limit
       this.getAttenceList()
+    },
+    rowDrop () {
+      const tbody = document.querySelector('.el-table__body-wrapper tbody')
+      Sortable.create(tbody)
     },
     getAttenceList () {
       this.$api.get('attence', null, response => {

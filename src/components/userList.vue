@@ -20,7 +20,7 @@ export default {
     headTop
   },
   mounted () {
-    this.$api.get('user/userList', null, response => {
+    this.$api.get('user/users', null, response => {
       this.tabledata = response.data.data
       this.tabledata.forEach(item => {
         item.role = item.role === 1 ? '超级管理员' : '普通管理员'

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {Message} from 'element-ui'
 let http = axios.create({
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'http://localhost:3000',
   withCredentials: true,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
@@ -16,14 +16,23 @@ let http = axios.create({
     return newData
   }]
 })
+http.interceptors.request.use(config => {
+  if (localStorage.getItem('token')) {
+    config.headers.token = localStorage.getItem('token')
+  }
+  return config
+})
 http.interceptors.response.use(res => {
   let code = res.data.code || 200
-  if (code === 403) {
+  if (code === 401) {
     Message({
       message: '登录状态已过期，即将跳转到登录页面',
       type: 'error'
     })
-    window.location.pathname = '/'
+    setTimeout(() => {
+      window.location.pathname = '/login'
+      localStorage.clear()
+    }, 1000)
   } else {
     return res
   }
@@ -42,16 +51,16 @@ function apiAxios (method, url, params, response) {
 }
 
 export default {
-  get: function (url, params = null, response) {
+  get (url, params = null, response) {
     return apiAxios('GET', url, params, response)
   },
-  post: function (url, params, response) {
+  post (url, params, response) {
     return apiAxios('POST', url, params, response)
   },
-  put: function (url, params, response) {
+  put (url, params, response) {
     return apiAxios('PUT', url, params, response)
   },
-  delete: function (url, params, response) {
+  delete (url, params, response) {
     return apiAxios('DELETE', url, params, response)
   }
 }

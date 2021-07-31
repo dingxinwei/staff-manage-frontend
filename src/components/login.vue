@@ -47,10 +47,11 @@ export default {
                   type: 'success'
                 })
                 sessionStorage.setItem('sid', '1')
+                localStorage.setItem('token', reponse.data.token)
                 if (reponse.data.data.role) {
                   sessionStorage.setItem('role', reponse.data.data.role)
                 }
-                this.$router.push('manage')
+                this.$router.push('/manage')
               } else {
                 this.$message({
                   showClose: true,
